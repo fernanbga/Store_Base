@@ -6,7 +6,7 @@ const Footer = () => (
     <div className="main">
       <div className="logo">
         <a href="https://gaborlogistics.com/" target="_blank" rel="noopener noreferrer">
-          <img src="/images/logobl.png" alt="GBL" /> 
+          <img src="/images/logoSB.png" alt="GBL" /> 
         </a>
       </div>
       <div className="links">

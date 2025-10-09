@@ -1,17 +1,20 @@
 import ProductCard from "../ProductCard/ProductCard";
-import "./ProductList.css";
+// import "./ProductList.css"; // Elimina si usas SCSS
 
 function ProductList({ products }) {
   return (
-    <div className="product-list">
-      {products.length === 0 ? (
-        <p>No products found.</p>
-      ) : (
-        products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))
-      )}
-    </div>
+    <>
+      <div className="product-list-title">Product List</div>
+      <div className="product-list">
+        {products.length === 0 ? (
+          <p>No products found.</p>
+        ) : (
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )}
+      </div>
+    </>
   );
 }
 
