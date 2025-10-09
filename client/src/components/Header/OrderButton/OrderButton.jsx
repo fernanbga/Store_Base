@@ -1,4 +1,4 @@
-import "./OrderButton.css";
+//import "./OrderButton.css";
 
 function OrderButton({ label, orderBy, currentOrder, currentDir, setOrder }) {
   // Si el botón está seleccionado, cambia el estilo
