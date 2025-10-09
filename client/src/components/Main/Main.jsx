@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
-import Header from "../Header/Header";
 import ProductList from "./ProductList/ProductList";
-import ProductDetail from "./ProductDetail/ProductDetail";
+import ProductDetailModal from "./ProductDetail/ProductDetailModal";
 
-function Main() {
+function Main({ orderBy, orderDir, searchValue }) {
   const [products, setProducts] = useState([]);
-  const [orderBy, setOrderBy] = useState("name");
-  const [orderDir, setOrderDir] = useState("ASC");
-  const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
-  const pageSize = 10;
+  const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
-  const handleSetOrder = (newOrderBy, newOrderDir) => {
-    setOrderBy(newOrderBy);
-    setOrderDir(newOrderDir);
-    setPage(1); // Reset to first page when sorting changes
-  };
+  const pageSize = 10;
 
   useEffect(() => {
     const query = searchValue.trim();
@@ -31,6 +22,16 @@ function Main() {
       });
   }, [orderBy, orderDir, page, pageSize, searchValue]);
 
+  useEffect(() => {
+    if (selectedProductId) {
+      fetch(`http://localhost:3000/api/products/${selectedProductId}`)
+        .then(res => res.json())
+        .then(data => setSelectedProduct(data));
+    } else {
+      setSelectedProduct(null);
+    }
+  }, [selectedProductId]);
+
   const handleNextPage = () => {
     if (page * pageSize < total) {
       setPage(page + 1);
@@ -43,22 +44,12 @@ function Main() {
     }
   };
 
-  const handleCloseModal = () => setSelectedProduct(null);
-
   return (
     <main>
-      <Header
-        currentOrder={orderBy}
-        currentDir={orderDir}
-        setOrder={handleSetOrder}
-        searchValue={searchValue}
-        setSearchValue={setSearchValue}
-      />
-      <ProductList
-        products={products}
-        onProductClick={setSelectedProduct}
-      />
-      <div style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}>
+      <h2>Product List</h2>
+      <ProductList products={products} onSelectProduct={setSelectedProductId} />
+
+      <div className="page-buttons" style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}>
         <button
           className="pagination-btn"
           onClick={handlePrevPage}
@@ -78,14 +69,8 @@ function Main() {
       <div style={{ textAlign: "center", color: "#888" }}>
         Page {page} of {Math.ceil(total / pageSize) || 1}
       </div>
-
       {selectedProduct && (
-        <div className="modal-overlay" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
-            <button className="modal-close" onClick={handleCloseModal}>×</button>
-            <ProductDetail product={selectedProduct} />
-          </div>
-        </div>
+        <ProductDetailModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}
     </main>
   );
