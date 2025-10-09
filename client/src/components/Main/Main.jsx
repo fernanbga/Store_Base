@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import ProductList from "./ProductList/ProductList";
+import ProductDetail from "./ProductDetail/ProductDetail";
 
 function Main() {
   const [products, setProducts] = useState([]);
@@ -10,6 +11,7 @@ function Main() {
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const pageSize = 10;
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleSetOrder = (newOrderBy, newOrderDir) => {
     setOrderBy(newOrderBy);
@@ -41,6 +43,8 @@ function Main() {
     }
   };
 
+  const handleCloseModal = () => setSelectedProduct(null);
+
   return (
     <main>
       <Header
@@ -50,40 +54,22 @@ function Main() {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <h2>Product List</h2>
-      <ProductList products={products} />
+      <ProductList
+        products={products}
+        onProductClick={setSelectedProduct}
+      />
       <div style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}>
         <button
+          className="pagination-btn"
           onClick={handlePrevPage}
           disabled={page === 1}
-          style={{
-            padding: "0.7rem 2rem",
-            fontSize: "1.1rem",
-            borderRadius: "8px",
-            border: "none",
-            background: page === 1 ? "#eee" : "#ffe600",
-            color: "#222",
-            cursor: page === 1 ? "not-allowed" : "pointer",
-            fontWeight: "bold",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
-          }}
         >
           Previous page
         </button>
         {page * pageSize < total && (
           <button
+            className="pagination-btn"
             onClick={handleNextPage}
-            style={{
-              padding: "0.7rem 2rem",
-              fontSize: "1.1rem",
-              borderRadius: "8px",
-              border: "none",
-              background: "#ffe600",
-              color: "#222",
-              cursor: "pointer",
-              fontWeight: "bold",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.04)"
-            }}
           >
             Next page
           </button>
@@ -92,6 +78,15 @@ function Main() {
       <div style={{ textAlign: "center", color: "#888" }}>
         Page {page} of {Math.ceil(total / pageSize) || 1}
       </div>
+
+      {selectedProduct && (
+        <div className="modal-overlay" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={e => e.stopPropagation()}>
+            <button className="modal-close" onClick={handleCloseModal}>×</button>
+            <ProductDetail product={selectedProduct} />
+          </div>
+        </div>
+      )}
     </main>
   );
 }
