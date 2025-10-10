@@ -1,15 +1,13 @@
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 
-function ProductCard({ product }) {
-  const navigate = useNavigate();
-
+function ProductCard({ product, onSelect }) {
   const handleClick = () => {
-    navigate(`/products/${product.id}`);
+    onSelect(product.id);
   };
 
   return (
-    <div className="product-card" onClick={handleClick} style={{ cursor: "pointer" }}>
+    <div className="product-card" onClick={handleClick}>
       <h3>{product.name}</h3>
       <p>Price: €{product.price}</p>
       <p>Relevance: {product.relevance}</p>
