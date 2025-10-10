@@ -1,5 +1,5 @@
 //import { useNavigate } from "react-router-dom";
-import "./ProductCard.css";
+// import "./ProductCard.css";
 
 function ProductCard({ product, onSelect }) {
   const handleClick = () => {
