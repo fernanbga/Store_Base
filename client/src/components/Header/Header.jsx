@@ -18,7 +18,7 @@ function Header({ currentOrder, currentDir, setOrder, searchValue, setSearchValu
       <input
         type="text"
         className="search-input"
-        placeholder="Buscar producto o fabricante..."
+        placeholder="Search for a product or manufacturer..."
         value={searchValue}
         onChange={handleInputChange}
       />
