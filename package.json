@@ -1,5 +1,5 @@
 {
-  "name": "Stor Base",
+  "name": "Store-Base",
   "version": "1.0.0",
   "description": "Backend para tienda online hecho con Express",
   "main": "app.js",
