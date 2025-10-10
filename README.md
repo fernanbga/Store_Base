@@ -1,3 +1,4 @@
+![Logo SB](client/public/logoSB.png)
 # 🛒 Store Base
 
 ## 🚀 Introduction
@@ -40,21 +41,83 @@ Store_Base/
 ├── app.js                  # Express backend entry point
 ├── config/                 # Database configuration
 │   └── db.js
+├── controllers/            # Backend controllers
+│   ├── manufacturerController.js
+│   ├── productController.js
 ├── models/                 # Data models
+│   ├── manufacturerModels.js
+│   ├── productModels.js
 ├── routes/                 # API routes
+│   ├── manufacturerRoutes.js
+│   ├── productRoutes.js
+├── utils/                  # Utility functions and queries
+│   └── queries.js
 ├── client/                 # React frontend
 │   ├── public/
+│   │   └── logoSB.png
 │   ├── src/
+│   │   ├── assets/
+│   │   │   └── images/
+│   │   │       ├── Facebook-1.webp
+│   │   │       ├── Instagram.webp
+│   │   │       └── logoSB.png
 │   │   ├── components/
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.jsx
+│   │   │   │   ├── OrderButton/
+│   │   │   │   │   └── OrderButton.jsx
 │   │   │   ├── Main/
-│   │   │   └── Header/
+│   │   │   │   ├── Main.jsx
+│   │   │   │   ├── ProductList/
+│   │   │   │   │   └── ProductList.jsx
+│   │   │   │   ├── ProductDetail/
+│   │   │   │   │   ├── ProductDetail.jsx
+│   │   │   │   │   └── ProductDetailModal.jsx
+│   │   │   │   └── ManufacturerList/
+│   │   │   │       └── ManufacturerList.jsx
 │   │   ├── styles/
+│   │   │   ├── components/
+│   │   │   │   ├── _Header.scss
+│   │   │   │   ├── _ProductCard.scss
+│   │   │   │   ├── _Main.scss
+│   │   │   └── views/
+│   │   │       └── _App.scss
 │   │   ├── App.jsx
 │   │   └── main.jsx
+│   ├── dist/               # Production build (if present)
 │   └── package.json
 ├── package.json            # Backend package.json
 └── README.md
 ```
+
+## Project Architecture
+
+![ER](client/public/images/ersb.png)
+
+## Screenshots
+
+![mobile1](client/public/images/mobile1.png)
+![mobile2](client/public/images/mobile2.png)
+![mobile3](client/public/images/mobile3.png)
+![mobile4](client/public/images/mobile4.png)
+![mobile5](client/public/images/mobile5.png)
+![desktop1](client/public/images/desktop1.png)
+![desktop2](client/public/images/desktop2.png)
+![desktop3](client/public/images/desktop3.png)
+![desktop4](client/public/images/desktop4.png)
+
+## 🌐 API Routes
+
+### **Product Routes**
+- `GET /api/products` — Get paginated list of products
+- `GET /api/products/:id` — Get product details by ID
+- `GET /api/products/search` — Search products by name or manufacturer
+
+### **Manufacturer Routes**
+- `GET /api/manufacturers` — Get paginated list of manufacturers
+- `GET /api/manufacturers/:id` — Get manufacturer details by ID
+- `GET /api/manufacturers/search` — Search manufacturers by name
+
 
 ## ⚙️ Installation & Local Usage
 
