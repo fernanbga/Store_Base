@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import ProductList from "./ProductList/ProductList";
 import ProductDetailModal from "./ProductDetail/ProductDetailModal";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Main({ orderBy, orderDir, searchValue }) {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
@@ -13,7 +15,7 @@ function Main({ orderBy, orderDir, searchValue }) {
   useEffect(() => {
     const query = searchValue.trim();
     fetch(
-      `http://localhost:3000/api/products?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&orderDir=${orderDir}&search=${encodeURIComponent(query)}`
+      `${API_URL}/api/products?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&orderDir=${orderDir}&search=${encodeURIComponent(query)}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -24,7 +26,7 @@ function Main({ orderBy, orderDir, searchValue }) {
 
   useEffect(() => {
     if (selectedProductId) {
-      fetch(`http://localhost:3000/api/products/${selectedProductId}`)
+      fetch(`${API_URL}/api/products/${selectedProductId}`)
         .then(res => res.json())
         .then(data => setSelectedProduct(data));
     } else {
