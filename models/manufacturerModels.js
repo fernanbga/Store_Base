@@ -18,21 +18,21 @@ exports.countManufacturersFiltered = async (search) => {
   return result.rows[0].total;
 };
 
-// // Create a new manufacturer
+// Create a new manufacturer
 // exports.createManufacturer = async (manufacturer) => {
 //   const { name, cif, address } = manufacturer;
 //   const result = await pool.query(queries.createManufacturer, [name, cif, address]);
 //   return result.rows[0];
 // };
 
-// // Update a manufacturer
+// Update a manufacturer
 // exports.updateManufacturer = async (id, manufacturer) => {
 //   const { name, cif, address } = manufacturer;
 //   const result = await pool.query(queries.updateManufacturer, [name, cif, address, id]);
 //   return result.rows[0];
 // };
 
-// // Delete a manufacturer
+// Delete a manufacturer
 // exports.deleteManufacturer = async (id) => {
 //   const result = await pool.query(queries.deleteManufacturer, [id]);
 //   return result.rows[0];

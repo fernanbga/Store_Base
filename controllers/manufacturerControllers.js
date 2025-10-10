@@ -10,7 +10,7 @@ exports.getManufacturers = async (req, res) => {
       total = await Manufacturer.countManufacturersFiltered(search);
     } else {
       manufacturers = await Manufacturer.getManufacturers(Number(page), Number(pageSize));
-      // Puedes agregar un método countManufacturers si lo necesitas
+ 
       total = manufacturers.length;
     }
 
