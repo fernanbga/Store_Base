@@ -1,5 +1,3 @@
-//import "./ProductDetailModal.scss";
-
 function ProductDetailModal({ product, onClose }) {
   if (!product) return null;
   return (

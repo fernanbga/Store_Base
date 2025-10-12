@@ -1,5 +1,4 @@
 import OrderButton from "./OrderButton/OrderButton";
-//import "./Header.css";
 
 function Header({ currentOrder, currentDir, setOrder, searchValue, setSearchValue }) {
   // handleChange para el input

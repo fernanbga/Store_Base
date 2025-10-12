@@ -1,5 +1,4 @@
 import ProductCard from "../ProductCard/ProductCard";
-// import "./ProductList.scss";
 
 function ProductList({ products, onSelectProduct }) {
   if (!products.length) {

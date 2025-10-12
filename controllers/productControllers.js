@@ -42,39 +42,3 @@ exports.getProductById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-// CRUD (if needed)
-// exports.createProduct = async (req, res) => {
-//   try {
-//     const product = await Product.createProduct(req.body);
-//     res.status(201).json(product);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// exports.updateProduct = async (req, res) => {
-//   try {
-//     const product = await Product.updateProduct(req.params.id, req.body);
-//     if (product) {
-//       res.json(product);
-//     } else {
-//       res.status(404).json({ error: 'Product not found' });
-//     }
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
-
-// exports.deleteProduct = async (req, res) => {
-//   try {
-//     const product = await Product.deleteProduct(req.params.id);
-//     if (product) {
-//       res.json(product);
-//     } else {
-//       res.status(404).json({ error: 'Product not found' });
-//     }
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };

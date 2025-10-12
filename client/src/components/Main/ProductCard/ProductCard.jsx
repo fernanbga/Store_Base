@@ -1,6 +1,3 @@
-//import { useNavigate } from "react-router-dom";
-// import "./ProductCard.css";
-
 function ProductCard({ product, onSelect }) {
   const handleClick = () => {
     onSelect(product.id);

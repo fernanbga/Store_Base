@@ -8,7 +8,6 @@ function ProductDetail() {
   useEffect(() => {
     fetch(`http://localhost:3000/api/products/${id}`)
       .then(res => res.json())
-      //.then(data => setProduct(data.product || null));
       .then(data => setProduct(data || null));
   }, [id]);
 
@@ -22,7 +21,7 @@ function ProductDetail() {
       <p><strong>Manufacturer:</strong> {product.manufacturer_name}</p>
       <p><strong>CIF:</strong> {product.manufacturer_cif}</p>
       <p><strong>Address:</strong> {product.manufacturer_address}</p>
-      {/* Si tienes imagen, puedes mostrarla aquí */}
+      {/* En un futuro con imagen :v */}
     </div>
   );
 }

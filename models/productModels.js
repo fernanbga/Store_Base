@@ -56,23 +56,3 @@ exports.countProductsFiltered = async (search) => {
   ]);
   return result.rows[0].total;
 };
-
-// Create a new product
-// exports.createProduct = async (product) => {
-//   const { name, relevance, price, manufacturer_id } = product;
-//   const result = await pool.query(queries.createProduct, [name, relevance, price, manufacturer_id]);
-//   return result.rows[0];
-// };
-
-// // Update a product
-// exports.updateProduct = async (id, product) => {
-//   const { name, relevance, price, manufacturer_id } = product;
-//   const result = await pool.query(queries.updateProduct, [name, relevance, price, manufacturer_id, id]);
-//   return result.rows[0];
-// };
-
-// // Delete a product
-// exports.deleteProduct = async (id) => {
-//   const result = await pool.query(queries.deleteProduct, [id]);
-//   return result.rows[0];
-// };
