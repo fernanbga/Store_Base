@@ -1,0 +1,110 @@
+@use "../utils/variables" as v;
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 0.8rem 0; // ← sin espacio arriba
+  background: linear-gradient(90deg, v.$color-accent 60%, v.$color-accent-2 100%);
+  color: v.$color-primary;
+  box-shadow: 0 4px 16px rgba(139, 92, 42, 0.08);
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    color: v.$color-primary;
+    text-shadow: 0 2px 8px rgba(139, 92, 42, 0.08);
+  }
+
+  .search-input,
+  .order-buttons {
+    max-width: 95vw; // margen lateral real en mobile
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .search-input {
+    margin-bottom: 1rem;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1.5px solid v.$color-primary;
+    outline: none;
+    background: v.$color-bg;
+    color: v.$color-text;
+    box-shadow: 0 2px 8px rgba(139, 92, 42, 0.04);
+    box-sizing: border-box;
+    // Elimina cualquier max-width y margin auto
+  }
+
+  .order-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 0.5rem;
+
+    .order-btn {
+      flex: 1 1 0;
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  .header-logo {
+    width: 160px;
+    height: auto;
+    margin-bottom: 1rem;
+    position: relative;
+    display: block;
+    margin-top: 0;
+  }
+}
+
+/* Mejora en tablet y desktop */
+@media (min-width: v.$bp-md) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 2rem 0 1.2rem 0;
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .search-input,
+    .order-buttons {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    .search-input {
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+      align-self: stretch;
+      padding-right: 0;
+    }
+
+    .order-buttons {
+      flex-direction: row;
+      gap: 1.5rem;
+      margin-bottom: 0;
+
+      .order-btn {
+        flex: 1 1 0;
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    .header-logo {
+      width: 220px;
+      margin-bottom: 0.7rem;
+    }
+  }
+}

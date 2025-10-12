@@ -1,0 +1,23 @@
+.product-detail {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0,112,173,0.10), 0 1.5px 6px rgba(0,0,0,0.04);
+  padding: 2.5rem 2rem;
+  max-width: 500px;
+  margin: 2.5rem auto;
+  border: 1.5px solid #e9eef3;
+
+  h2 {
+    color: #0070ad;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.05rem;
+    color: #223244;
+    margin: 0.5rem 0;
+    font-weight: 500;
+  }
+}

@@ -1,0 +1,45 @@
+@use "../utils/variables" as v;
+
+.product-card {
+  background: v.$color-surface;
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-1;
+  padding: 1.2rem 1rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 320px;
+  margin: 0.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1.5px solid v.$color-border;
+  transition: transform 0.18s, box-shadow 0.18s;
+  cursor: pointer; // ← esto hace que el puntero sea una mano al pasar el mouse
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: v.$color-primary;
+    margin-bottom: 0.7rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: v.$color-text;
+    margin: 0.2rem 0;
+    font-weight: 500;
+  }
+
+  &:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(139, 92, 42, 0.18);
+    border-color: v.$color-accent;
+  }
+}
+
+@media (min-width: v.$bp-md) {
+  .product-card {
+    max-width: 260px;
+    padding: 2rem 1.5rem;
+  }
+}
