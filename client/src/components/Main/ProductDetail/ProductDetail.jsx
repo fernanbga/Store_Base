@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/products/${id}`)
+    //fetch(`http://localhost:3000/api/products/${id}`) //cambiar url
+    fetch(`${API_URL}/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data || null));
   }, [id]);

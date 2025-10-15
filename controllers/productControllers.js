@@ -18,7 +18,7 @@ exports.getProducts = async (req, res) => {
       products = await Product.searchProducts(search, orderBy, orderDir, Number(page), Number(pageSize));
       total = await Product.countProductsFiltered(search);
     } else {
-      // Sin búsqueda, devuelve todos paginados/ordenados
+      // Sin busqueda, devuelve todos paginados/ordenados
       products = await Product.getProducts(orderBy, orderDir, Number(page), Number(pageSize));
       total = await Product.countProducts();
     }
