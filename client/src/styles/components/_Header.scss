@@ -18,15 +18,20 @@
     text-shadow: 0 2px 8px rgba(139, 92, 42, 0.08);
   }
 
-  .search-input,
+  // MISMO ancho para buscador (form) y contenedor de botones
+  form[role="search"],
   .order-buttons {
     max-width: 95vw; // margen lateral real en mobile
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    display: block; // centra el input con los márgenes auto
   }
 
+  // El input ocupa el 100% del form
   .search-input {
+    display: block;       // asegura bloque
+    width: 100%;          // llena el form
     margin-bottom: 1rem;
     padding: 0.6rem 1rem;
     font-size: 1rem;
@@ -37,32 +42,31 @@
     color: v.$color-text;
     box-shadow: 0 2px 8px rgba(139, 92, 42, 0.04);
     box-sizing: border-box;
-    // Elimina cualquier max-width y margin auto
   }
 
-  /* Nav de orden: ahora con ul/li */
+  /* Mobile-first: botones apilados y mismo ancho que el form */
   .order-buttons {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 
     ul {
       display: flex;
-      flex-direction: column;
-      gap: 0.7rem; // igual que antes en mobile
+      flex-direction: column;  // apilados en mobile
+      gap: 0.75rem;
       list-style: none;
       padding: 0;
       margin: 0;
+      width: 100%;             // igual ancho que el buscador
     }
 
     li {
-      flex: 1 1 0;
-      width: 100%;
+      width: 100%;             // cada item ocupa todo el ancho
       min-width: 0;
     }
 
-    .order-btn {
-      flex: 1 1 0;
-      width: 100%;
-      min-width: 0;
+    /* Compatibilidad con tu componente de botón */
+    .order-btn,
+    button {
+      width: 100%;             // el botón llena su li
     }
   }
 
@@ -76,7 +80,7 @@
   }
 }
 
-/* Mejora en tablet y desktop */
+/* Desktop: misma anchura que el buscador y botones en fila repartidos */
 @media (min-width: v.$bp-md) {
   .header {
     flex-direction: column;
@@ -88,9 +92,10 @@
       margin-bottom: 0.7rem;
     }
 
-    .search-input,
+    // MISMO ancho en desktop
+    form[role="search"],
     .order-buttons {
-      max-width: 700px;
+      max-width: 700px;    // mismo ancho para ambos en desktop
       margin-left: auto;
       margin-right: auto;
       width: 100%;
@@ -107,15 +112,18 @@
       margin-bottom: 0;
 
       ul {
-        flex-direction: row;
-        gap: 1.5rem; // igual que antes en desktop
+        flex-direction: row;   // en fila en desktop
+        gap: 1rem;
       }
 
-      li,
-      .order-btn {
-        flex: 1 1 0;
+      li {
+        flex: 1 1 0;           // se reparten a partes iguales
+        width: auto;
+      }
+
+      .order-btn,
+      button {
         width: 100%;
-        min-width: 0;
       }
     }
 
