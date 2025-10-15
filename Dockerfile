@@ -3,6 +3,8 @@ FROM node:20-alpine AS frontend
 WORKDIR /app/client
 COPY client/package*.json ./
 RUN npm ci
+ARG VITE_API_URL
+ENV VITE_API_URL=&{VITE_API_URL}
 COPY client/ .
 RUN npm run build
 
