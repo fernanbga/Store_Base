@@ -21,56 +21,75 @@ function Main({ orderBy, orderDir, searchValue }) {
       .then((data) => {
         setProducts(data.products || []);
         setTotal(Number(data.total) || 0);
+      })
+      .catch(() => {
+        setProducts([]);
+        setTotal(0);
       });
   }, [orderBy, orderDir, page, pageSize, searchValue]);
 
   useEffect(() => {
     if (selectedProductId) {
       fetch(`${API_URL}/api/products/${selectedProductId}`)
-        .then(res => res.json())
-        .then(data => setSelectedProduct(data));
+        .then((res) => res.json())
+        .then((data) => setSelectedProduct(data))
+        .catch(() => setSelectedProduct(null));
     } else {
       setSelectedProduct(null);
     }
   }, [selectedProductId]);
 
   const handleNextPage = () => {
-    if (page * pageSize < total) {
-      setPage(page + 1);
-    }
+    if (page * pageSize < total) setPage((p) => p + 1);
   };
 
   const handlePrevPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-    }
+    if (page > 1) setPage((p) => p - 1);
   };
 
   return (
-    <main>
-      <h2>Product List</h2>
-      <ProductList products={products} onSelectProduct={setSelectedProductId} />
+    <main aria-labelledby="page-title">
+      <h2 id="page-title">Product List</h2>
 
-      <div className="page-buttons" style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}>
-        <button
-          className="pagination-btn"
-          onClick={handlePrevPage}
-          disabled={page === 1}
-        >
-          Previous page
-        </button>
-        {page * pageSize < total && (
-          <button
-            className="pagination-btn"
-            onClick={handleNextPage}
-          >
-            Next page
-          </button>
-        )}
-      </div>
-      <div style={{ textAlign: "center", color: "#888" }}>
+      <section aria-labelledby="product-list-heading">
+        <h3 id="product-list-heading" className="sr-only">Results</h3>
+        <ProductList products={products} onSelectProduct={setSelectedProductId} />
+      </section>
+
+      <nav
+        className="page-buttons"
+        aria-label="Pagination"
+        style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}
+      >
+        <ul style={{ display: "flex", listStyle: "none", gap: "1rem", padding: 0, margin: 0 }}>
+          <li>
+            <button
+              className="pagination-btn"
+              type="button"
+              onClick={handlePrevPage}
+              disabled={page === 1}
+            >
+              Previous page
+            </button>
+          </li>
+          {page * pageSize < total && (
+            <li>
+              <button
+                className="pagination-btn"
+                type="button"
+                onClick={handleNextPage}
+              >
+                Next page
+              </button>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      <p style={{ textAlign: "center", color: "#888" }} role="status" aria-live="polite">
         Page {page} of {Math.ceil(total / pageSize) || 1}
-      </div>
+      </p>
+
       {selectedProduct && (
         <ProductDetailModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}

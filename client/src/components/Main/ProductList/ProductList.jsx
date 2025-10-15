@@ -1,15 +1,18 @@
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCard from "./ProductCard";
 
 function ProductList({ products, onSelectProduct }) {
-  if (!products.length) {
-    return <div className="product-list">No products found.</div>;
+  if (!products?.length) {
+    return <p role="status">No products found.</p>;
   }
+
   return (
-    <div className="product-list">
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} onSelect={onSelectProduct} />
+    <ul className="product-list" style={{ listStyle: "none", padding: 0, margin: 0 }}>
+      {products.map((p) => (
+        <li key={p.id}>
+          <ProductCard product={p} onSelect={() => onSelectProduct(p.id)} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
