@@ -11,7 +11,7 @@ function Header({ currentOrder, currentDir, setOrder, searchValue, setSearchValu
       <img src="../images/logoSB.png" alt="Store Base" className="header-logo" />
 
       <nav className="order-buttons" aria-label="Sort products">
-        <ul style={{ display: "flex", gap: "0.5rem", listStyle: "none", padding: 0, margin: 0 }}>
+        <ul>
           <li>
             <OrderButton
               label="Name"

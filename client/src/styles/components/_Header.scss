@@ -40,11 +40,24 @@
     // Elimina cualquier max-width y margin auto
   }
 
+  /* Nav de orden: ahora con ul/li */
   .order-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.7rem;
     margin-bottom: 0.5rem;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem; // igual que antes en mobile
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      flex: 1 1 0;
+      width: 100%;
+      min-width: 0;
+    }
 
     .order-btn {
       flex: 1 1 0;
@@ -91,10 +104,14 @@
     }
 
     .order-buttons {
-      flex-direction: row;
-      gap: 1.5rem;
       margin-bottom: 0;
 
+      ul {
+        flex-direction: row;
+        gap: 1.5rem; // igual que antes en desktop
+      }
+
+      li,
       .order-btn {
         flex: 1 1 0;
         width: 100%;
@@ -107,4 +124,17 @@
       margin-bottom: 0.7rem;
     }
   }
+}
+
+/* Utilidad para etiquetas/encabezados ocultos accesibles */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
