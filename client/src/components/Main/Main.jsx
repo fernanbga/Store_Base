@@ -47,30 +47,48 @@ function Main({ orderBy, orderDir, searchValue }) {
   };
 
   return (
-    <main>
-      <h2>Product List</h2>
-      <ProductList products={products} onSelectProduct={setSelectedProductId} />
+    <main aria-labelledby="page-title">
+      <h2 id="page-title">Product List</h2>
 
-      <div className="page-buttons" style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center", gap: "1rem" }}>
-        <button
-          className="pagination-btn"
-          onClick={handlePrevPage}
-          disabled={page === 1}
-        >
-          Previous page
-        </button>
-        {page * pageSize < total && (
-          <button
-            className="pagination-btn"
-            onClick={handleNextPage}
-          >
-            Next page
-          </button>
-        )}
-      </div>
-      <div style={{ textAlign: "center", color: "#888" }}>
+      <section aria-labelledby="results-heading">
+        <h3 id="results-heading" style={{ position: "absolute", left: "-10000px" }}>Results</h3>
+        <ProductList products={products} onSelectProduct={setSelectedProductId} />
+      </section>
+
+      <nav
+        className="page-buttons"
+        aria-label="Pagination"
+        style={{ textAlign: "center", margin: "2rem 0", display: "flex", justifyContent: "center" }}
+      >
+        <ul style={{ display: "flex", gap: "1rem", listStyle: "none", padding: 0, margin: 0 }}>
+          <li>
+            <button
+              className="pagination-btn"
+              onClick={handlePrevPage}
+              disabled={page === 1}
+              type="button"
+            >
+              Previous page
+            </button>
+          </li>
+          {page * pageSize < total && (
+            <li>
+              <button
+                className="pagination-btn"
+                onClick={handleNextPage}
+                type="button"
+              >
+                Next page
+              </button>
+            </li>
+          )}
+        </ul>
+      </nav>
+
+      <p style={{ textAlign: "center", color: "#888" }} role="status" aria-live="polite">
         Page {page} of {Math.ceil(total / pageSize) || 1}
-      </div>
+      </p>
+
       {selectedProduct && (
         <ProductDetailModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />
       )}
