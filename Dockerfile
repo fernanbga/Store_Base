@@ -27,6 +27,7 @@ COPY config ./config
 COPY routes ./routes
 COPY models ./models
 COPY utils ./utils
+COPY controllres ./controllers
 COPY package*.json ./
 
 # Built frontend
