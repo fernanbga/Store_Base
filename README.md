@@ -145,9 +145,8 @@ npm run dev
 
 ## 🐳 Deployment on Render
 
-- The project is configured for deployment on Render.
-- Both backend and frontend are served from the same repository.
-- PostgreSQL database is hosted on Render.
+- The project is containerized with a multi-stage Dockerfile at the repo root.
+- Deployed on Render as a Docker Web Service (Dockerfile-based).
 
 ## 📊 Roadmap
 
